@@ -1,0 +1,4 @@
+interface:
+  display_name: "Top-Down Review"
+  short_description: "Code review from purpose through solution to implementation"
+  default_prompt: "Use $top-down-review to review the current branch: purpose and product contract, target solution, implementation, tests, and project patterns."
