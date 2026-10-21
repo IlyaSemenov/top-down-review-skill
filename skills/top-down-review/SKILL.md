@@ -20,6 +20,7 @@ During a review, if the project has no profile and the review relied on project-
 1. Read the project's agent instructions and `REVIEW.md`.
 2. Determine the review range — the base and the reviewed revision — and use the same range in every later command.
    - For a branch or an MR/PR, the base is the merge base with a freshly fetched target branch, not a stale local ref.
+     The target branch is the MR/PR target, otherwise the base branch named in `REVIEW.md`, otherwise the branch `refs/remotes/origin/HEAD` points to.
    - For uncommitted changes, the base is `HEAD`, and the range includes the in-scope untracked files, which `git diff` omits.
    - Keep a range the user defined explicitly.
 
@@ -122,8 +123,8 @@ Keep a finding only if you can answer each question:
 - Which concrete scenario or consumer exposes the problem?
 - What confirms it and every assumption behind it: code, a contract, a test, or documentation?
   For the behavior of a framework, ORM, database, or library, check the version the project actually uses, from the lockfile, even when it is not installed locally.
-- Does the change introduce or materially worsen the problem?
-  Mention a material pre-existing problem in one line as outside the change.
+- Does the change introduce or materially worsen the problem, or leave unsolved what its task requires?
+  Mention a material problem that fails this check in one line as outside the change.
 - Which minimal change fixes its root cause, and does it work in the proposed form?
   When the finding prescribes a specific shape of the fix, sketch it against the actual code.
 
@@ -135,11 +136,7 @@ If confirmation needs a runtime check you did not run, report a residual risk an
 
 Respond in this order:
 
-- `Summary` — 1-2 lines on the review range and the affected surfaces.
-- `Verdict` — mergeable or not, with the main reason.
-  Any `blocker` makes the change not mergeable.
-  With `major` findings, state whether merging is acceptable only with explicitly accepted technical debt and what that debt costs.
-  When an architecture alternative decides the verdict, state the decisive tradeoff.
+- `Summary` — 1-2 lines on the review range and the affected surfaces, and the main problem, if any.
 - `Product and architecture assessment` — the business contract, the key invariants, and the target solution the change was assessed against.
 - `Findings` — product issues first, then architecture, then implementation; within each layer, by descending severity.
 - `Polish` — see [Polish](#polish).
@@ -149,20 +146,24 @@ Respond in this order:
   A fully static review is normal; do not run checks just to fill this section.
 
 Omit empty `Polish`, `Alternatives`, and `To discuss`; with no findings, write `Findings: none`.
+Every finding and polish fix is meant to be applied as proposed unless `To discuss` questions it.
 Do not mention staging, index, or commit status.
 
 ### Severity
 
-- `blocker` — must not be merged: behavior, access or security, data, or a public contract breaks.
+Severity is the cost of leaving a finding unfixed.
+
+- `blocker` — the fix cannot be deferred: behavior, access or security, data, or a public contract breaks.
 - `major` — significant technical debt, an architectural mistake, a fragile contract, or an uncovered risk with a real cost.
-- `minor` — a local improvement of readability, naming, a test, or documentation that does not block the merge but needs an explanation of its harm.
+  Deferring the fix is acceptable only as explicitly accepted technical debt; propose it in `To discuss` and state what the debt costs.
+- `minor` — a local improvement of readability, naming, a test, or documentation; explain its harm.
 
 ### Findings
 
 Number each finding as `F1`, `F2`, … and give it a short descriptive title — what is wrong and where.
 Give its severity, file and line, and layer: `product` (WHY), `architecture` (WHAT), or `implementation` (HOW).
 Write the concrete harm and propose a concrete change, not general advice.
-A finding not referenced in `To discuss` is meant to be fixed as proposed.
+When a finding proposes reworking the solution, name the tradeoff that justifies the rework.
 Do not leave withdrawn findings or severity changes made while reasoning in the list.
 When the change already has an earlier review — comments in the MR/PR discussion, a review the user provided, or an earlier round of this review — note a finding the earlier review already raised, and assess the author's replies and fixes by the same criteria as your own findings.
 In `To discuss`, refer to a finding by its number and title together, for example `F4 (order.list contract)`.
