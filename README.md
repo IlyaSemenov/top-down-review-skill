@@ -49,3 +49,9 @@ For example, in Claude Code:
 ```text
 /top-down-review the current branch
 ```
+
+## Review method
+
+The review criteria, finding verification, and severity scale live in a self-contained [review method](skills/top-down-review/review-method.md), separate from this skill's workflow and report format, so other skills can apply the same criteria.
+
+[agent-review](https://github.com/IlyaSemenov/agent-review-skill) applies it for an independent review by a peer agent, such as Codex reviewing work done in Claude Code: the reviewer reports issues over several rounds, and your agent judges them, fixes the accepted ones, and continues the discussion.
