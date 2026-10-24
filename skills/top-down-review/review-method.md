@@ -98,6 +98,11 @@ Run broad linters only when the review request asks for them.
 
 - If the change alters product behavior, a workflow, a boundary, or a development rule, check the owning document, found through the project's agent instructions rather than by the nearest changed file.
   If the change alters behavior that the user-facing documentation describes, also check it.
+  A statement that the change made false is a finding, also in a document the change did not touch, such as a status table row that still describes the old behavior.
+- Check whether each documentation addition is needed at all before reviewing its wording.
+  An addition is a finding when the reader does not need it or already learns it in time from the existing documents or the product's own messages; propose deleting it.
+  For example, a README paragraph about an error adds nothing when the command's output already explains the error.
+  When fixing an existing sentence would be enough, propose that fix instead of the addition.
 - Normative documentation describes the current state, not its history, and does not duplicate a rule owned elsewhere.
 
 #### Placement
@@ -105,6 +110,7 @@ Run broad linters only when the review request asks for them.
 Check that each addition stands where its reader looks for it, not where it was convenient to append:
 
 - A text fits the reader and purpose of its document and of the passage it joins: an implementation or maintenance detail does not belong in a user-facing description of behavior.
+- An added text matches the level of detail of the neighboring sections: a paragraph about one rare case in a section that describes every other case in one line is a finding.
 - A function, a test, or a `describe` block takes its place in the logical order of its file, such as happy path → main contract → errors → edge cases.
 
 #### Naming
@@ -118,6 +124,8 @@ Check that each addition stands where its reader looks for it, not where it was 
 #### Prose
 
 - User-facing texts must read as natural product wording, rather than code identifiers or literal translations.
+- Read each new or changed user-facing text, such as documentation, a release note, or a product message, as its reader: it describes what they observe, in terms they know.
+  A release note says what changed for the user, such as "`sync` no longer deletes files that were never uploaded", not how the code does it now.
 - Flag filler in texts, documents, and comments: text that states the obvious, retells the code, repeats nearby text, or hedges generically.
   Propose deleting it or a tighter replacement.
 - Polish an MR/PR description only when the requester of the review is its author.
