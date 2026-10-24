@@ -66,6 +66,7 @@ Run broad linters only when the review request asks for them.
 - When the change introduces a constant — a limit, a threshold, a period — search for an existing setting or constant governing the same quantity and check that they agree.
 - If the change alters a schema, an API, a storage format, configuration, or dependencies, check old and new consumers, including mixed versions during a rollout, and rollback, rerun, and partial failure of a migration.
   For a dependency upgrade, check the changelog of the versions actually used.
+- When the change alters what a value means while its type stays the same, such as a function that now returns `name@version` where it returned `name`, check every consumer of that value; the type checker will not catch one that misreads the new form.
 - If the change replaces an implementation of existing behavior, such as a conversion, a parser, or a query, compare the old and new results on the same inputs, especially on inputs one side cannot represent.
 - When the change's behavior shows only at runtime, such as layout, rendering, animation, or timing, list the scenarios that exercise it — boundary values of its conditions, extreme sizes and content, and state changes after initialization — and check each one statically or report it as residual risk.
   A proposed fix must hold in the same scenarios.
@@ -137,6 +138,7 @@ Keep a finding only if you can answer each question:
 
 - Which concrete scenario or consumer exposes the problem?
 - What confirms it and every assumption behind it: code, a contract, a test, or documentation?
+  Confirm it along the whole path the input takes, not only where you saw the condition: an earlier step may transform the input or send it elsewhere.
   For the behavior of a framework, ORM, database, or library, check the version the project actually uses, from the lockfile, even when it is not installed locally.
 - Does the change introduce or materially worsen the problem, or leave unsolved what its task requires?
   Mention a material problem that fails this check in one line as outside the change.
