@@ -30,6 +30,8 @@ Run broad linters only when the review request asks for them.
 
 ## What to check
 
+The checks below are not exhaustive: when you notice a risk outside them, check it too and verify it like any other finding.
+
 ### Purpose and contract (WHY)
 
 - Formulate the product problem, the user, the expected outcome, and the business invariants, and check that the new rules agree with each other, with the domain model, with role permissions, and with neighboring scenarios.
