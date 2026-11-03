@@ -50,6 +50,7 @@ Run broad linters only when the review request asks for them.
 - Report anything the change adds that is not needed as a finding, not as an alternative:
   - a second source of truth for the same rule or value;
   - state or a handler that an existing owner already covers;
+  - logic that duplicates an existing function, component, or library utility instead of reusing it;
   - a layer that can be removed;
   - an abstraction or flexibility without a concrete use.
 - Report runtime code as a finding when a declarative mechanism the project uses, such as CSS, a schema constraint, or a type, fully expresses the same behavior.
