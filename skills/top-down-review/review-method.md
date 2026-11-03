@@ -84,6 +84,8 @@ Run broad linters only when the review request asks for them.
 
 - File layout, the split of responsibilities into functions, error handling, and idioms must follow the neighboring code.
   A new pattern needs a reason the existing one does not fit.
+- When the change follows a neighboring pattern that the project's conventions or the target solution show to be worse, report it rather than accept it for consistency.
+  Name the tradeoff between consistency and the better pattern and propose the safe next step, such as applying the better pattern to the new code and moving the neighbors in a separate task; when the choice is not obvious, raise it as an open question.
 
 #### Tests
 
