@@ -106,6 +106,9 @@ The checks below are not exhaustive: when you notice a risk outside them, check 
 - If the change alters product behavior, a workflow, a boundary, or a development rule, check the owning document, found through the project's agent instructions rather than by the nearest changed file.
   If the change alters behavior that the user-facing documentation describes, also check it.
   A statement that the change made false is a finding, also in a document the change did not touch, such as a status table row that still describes the old behavior.
+- Check each factual claim in new or changed documentation and comments, and in wording you propose, against the contract or code it describes.
+  Verify a claim about public behavior by following a public call to the value it returns, not by finding the code meant to produce that value, which another path may bypass.
+  Check every case the claim covers, such as each way to reach the same data; when the claim holds only for some of them, it must name its limits.
 - Check whether each documentation addition is needed at all before reviewing its wording.
   An addition is a finding when the reader does not need it or already learns it in time from the existing documents or the product's own messages; propose deleting it.
   For example, a README paragraph about an error adds nothing when the command's output already explains the error.
