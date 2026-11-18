@@ -149,13 +149,17 @@ Keep a finding only if you can answer each question:
   Confirm it along the whole path the input takes, not only where you saw the condition: an earlier step may transform the input or send it elsewhere.
   For the behavior of a framework, ORM, database, or library, check the version the project actually uses, from the lockfile, even when it is not installed locally.
 - Does the change introduce or materially worsen the problem, or leave unsolved what its task requires?
+  When the change wraps or reimplements a library or existing code, check how that code behaves in the same scenario before attributing the behavior to the change.
   Mention a material problem that fails this check in one line as outside the change.
-- Which minimal change fixes its root cause, and does it work in the proposed form?
-  When the finding prescribes a specific shape of the fix, sketch it against the actual code.
+- What outcome must the fix achieve to remove the root cause?
 
 Drop a finding that fails the check; do not downgrade an unproven hypothesis to `minor` or to a question.
 An open product decision stays an open question under an explicit assumption, see [Purpose and contract](#purpose-and-contract-why).
 If confirmation needs a runtime check you did not run, report a residual risk and name the check.
+
+Propose the minimal change that achieves the required outcome only after checking that it works in the proposed form.
+When the finding prescribes a specific shape of the fix, sketch it against the actual code and check it on every use of the API or value it changes, such as other callers and chained calls, not only where the problem shows.
+When no change passes this check, give the outcome and leave the form of the fix open.
 
 ## Results
 
@@ -168,6 +172,7 @@ Sort what the review found into these categories:
 - **Residual risk** — what remained unchecked or uncertain, and material problems outside the change.
 
 Give each finding its file and line, the concrete harm, and a concrete change rather than general advice.
+If no fix is confirmed, state the required outcome instead.
 When a finding proposes reworking the solution, name the tradeoff that justifies the rework.
 Leave out findings withdrawn and severities changed while reasoning.
 
