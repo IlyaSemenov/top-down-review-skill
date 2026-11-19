@@ -112,8 +112,9 @@ The checks below are not exhaustive: when you notice a risk outside them, check 
   When a claim draws a line between correct use and a mistake, test the claim and any wording you propose against one minimal example on each side.
   For example, to check when a wrapper can finish before the operation it starts, compare a wrapper that returns the operation's promise with one that discards it.
   Include both examples in a finding about where that line falls.
-- Check whether each documentation addition is needed at all before reviewing its wording.
-  An addition is a finding when the reader does not need it or already learns it in time from the existing documents or the product's own messages; propose deleting it.
+- Before reviewing the wording of a documentation addition, or proposing one, check whether it is needed at all.
+  An addition in the change is a finding when the reader does not need it or already learns it in time from the existing documents or the product's own messages; propose deleting it.
+  Drop an addition of your own, such as a cross-reference, in the same case.
   For example, a README paragraph about an error adds nothing when the command's output already explains the error.
   When fixing an existing sentence would be enough, propose that fix instead of the addition.
 - Normative documentation describes the current state, not its history, and does not duplicate a rule owned elsewhere.
@@ -201,4 +202,4 @@ Severity is the cost of leaving an issue unfixed.
 
 Report all polish you found, even next to `blocker` or `major` findings, except mechanical formatting, such as indentation, spacing, or line wrapping, when the project configures a formatter or a linter.
 Skip polish only in code that a finding proposes to rewrite or delete.
-Merge fixes of the same kind into one.
+Merge polish fixes of the same kind into one, but report a finding separately from polish, even in the same passage.
