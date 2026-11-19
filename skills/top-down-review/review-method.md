@@ -39,6 +39,9 @@ The checks below are not exhaustive: when you notice a risk outside them, check 
 - For a bug fix, check that the change removes every symptom and affected surface from the report, on the report's data when it has some.
 - A change that extends or reinterprets the task statement is a finding only when the product decision is harmful or contradicts an explicit requirement.
   A mockup detail may be an example rather than a requirement.
+- When the change removes a guarantee that consumers get, including one preserved by an earlier decision to reject the proposed alternative, name the guarantee and the operation a consumer needs from the change, even when the task statement asks for the removal.
+  Check whether that operation is possible while preserving the guarantee, such as through a narrower API; if it is and nothing else requires the removal, the removal is a finding.
+  When the need stays unclear, raise an open question that names the missing requirement or constraint, and continue under an explicit assumption.
 - Look for footguns — behavior that provokes a mistake, irreversible loss, a hidden data change, or a bypass of the expected process — and assess the effects on other roles, neighboring user flows, existing data, and integrations.
 - If the business meaning is ambiguous, raise the assumption as an open question and continue the assessment under it.
 
