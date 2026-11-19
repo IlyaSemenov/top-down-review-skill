@@ -115,6 +115,7 @@ The checks below are not exhaustive: when you notice a risk outside them, check 
   When a claim draws a line between correct use and a mistake, test the claim and any wording you propose against one minimal example on each side.
   For example, to check when a wrapper can finish before the operation it starts, compare a wrapper that returns the operation's promise with one that discards it.
   Include both examples in a finding about where that line falls.
+- When a documented rule is drawn from one case, such as an instruction written after an incident, check that it also works in the common cases within its scope.
 - Before reviewing the wording of a documentation addition, or proposing one, check whether it is needed at all.
   An addition in the change is a finding when the reader does not need it or already learns it in time from the existing documents or the product's own messages; propose deleting it.
   Drop an addition of your own, such as a cross-reference, in the same case.
@@ -146,7 +147,8 @@ Check that each addition stands where its reader looks for it, not where it was 
 - Read each new or changed user-facing text, such as documentation, a release note, or a product message, as its reader: it describes what they observe, in terms they know.
   A release note says what changed for the user, such as "`sync` no longer deletes files that were never uploaded", not how the code does it now.
 - When the change adds or rewrites the heading or the opening sentence of a section, or you propose one, read them together, then compare them with the whole section.
-  They must convey its main purpose and scope, rather than one use taken from an example.
+  When the change adds or rewrites the first sentence of a rule or a list item, or you propose one, compare it with the text it introduces.
+  In both cases, the introduction must convey the main purpose and scope of what it introduces, rather than one use taken from an example.
 - Flag filler in texts, documents, and comments: text that states the obvious, retells the code, repeats nearby text, or hedges generically.
   Propose deleting it or a tighter replacement.
 - Polish an MR/PR description only when the requester of the review is its author.
