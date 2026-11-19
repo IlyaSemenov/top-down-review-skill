@@ -109,6 +109,9 @@ The checks below are not exhaustive: when you notice a risk outside them, check 
 - Check each factual claim in new or changed documentation and comments, and in wording you propose, against the contract or code it describes.
   Verify a claim about public behavior by following a public call to the value it returns, not by finding the code meant to produce that value, which another path may bypass.
   Check every case the claim covers, such as each way to reach the same data; when the claim holds only for some of them, it must name its limits.
+  When a claim draws a line between correct use and a mistake, test the claim and any wording you propose against one minimal example on each side.
+  For example, to check when a wrapper can finish before the operation it starts, compare a wrapper that returns the operation's promise with one that discards it.
+  Include both examples in a finding about where that line falls.
 - Check whether each documentation addition is needed at all before reviewing its wording.
   An addition is a finding when the reader does not need it or already learns it in time from the existing documents or the product's own messages; propose deleting it.
   For example, a README paragraph about an error adds nothing when the command's output already explains the error.
