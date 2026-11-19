@@ -181,6 +181,7 @@ Sort what the review found into these categories:
 - **Polish** — fixes of severity `polish`.
 - **Alternatives** — useful options equivalent to the implemented one or not worth the switch; not micro-style.
 - **Open questions** — assumptions the conclusion rests on and decisions that need confirmation; only what affects the conclusion or further actions.
+  When the answer to a question determines whether the change is needed at all, make resolving it the main conclusion of the review and name the findings and polish that should wait for the answer.
 - **Residual risk** — what remained unchecked or uncertain, and material problems outside the change.
 
 Give each finding its file and line, the concrete harm, and a concrete change rather than general advice.
