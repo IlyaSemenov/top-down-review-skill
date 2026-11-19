@@ -138,6 +138,8 @@ Check that each addition stands where its reader looks for it, not where it was 
 - User-facing texts must read as natural product wording, rather than code identifiers or literal translations.
 - Read each new or changed user-facing text, such as documentation, a release note, or a product message, as its reader: it describes what they observe, in terms they know.
   A release note says what changed for the user, such as "`sync` no longer deletes files that were never uploaded", not how the code does it now.
+- When the change adds or rewrites the heading or the opening sentence of a section, or you propose one, read them together, then compare them with the whole section.
+  They must convey its main purpose and scope, rather than one use taken from an example.
 - Flag filler in texts, documents, and comments: text that states the obvious, retells the code, repeats nearby text, or hedges generically.
   Propose deleting it or a tighter replacement.
 - Polish an MR/PR description only when the requester of the review is its author.
@@ -190,6 +192,7 @@ Severity is the cost of leaving an issue unfixed.
 - `polish` — a local fix that changes neither behavior nor a contract anything relies on and whose replacement explains itself: wording, minor naming, phrasing of comments and docs, formatting, small consistency fixes.
   Removing a parameter, an export, or a branch without consumers is polish; when a consumer may exist outside the reviewed code, such as a public API, it is a finding.
   If the harm needs explaining, it is a finding.
+  A wording fix is polish only when it keeps what the text covers and claims.
 
 ### Polish
 
